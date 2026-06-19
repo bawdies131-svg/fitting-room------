@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>試着室番号管理</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 店番入力（テンキー） -->
+  <div id="storeInput">
+    <h2>店番を入力してください</h2>
+    <div id="storeDisplay" class="display">---</div>
+
+    <div class="keypad">
+      <button onclick="pressKey(1)">1</button>
+      <button onclick="pressKey(2)">2</button>
+      <button onclick="pressKey(3)">3</button>
+      <button onclick="pressKey(4)">4</button>
+      <button onclick="pressKey(5)">5</button>
+      <button onclick="pressKey(6)">6</button>
+      <button onclick="pressKey(7)">7</button>
+      <button onclick="pressKey(8)">8</button>
+      <button onclick="pressKey(9)">9</button>
+      <button onclick="clearKey()">C</button>
+      <button onclick="pressKey(0)">0</button>
+      <button onclick="confirmStore()">決定</button>
+    </div>
+  </div>
+
+  <!-- 性別選択 -->
+  <div id="genderSelect" style="display:none;">
+    <h2>性別を選択してください</h2>
+    <button onclick="selectGender('men')">メンズ</button>
+    <button onclick="selectGender('women')">レディース</button>
+  </div>
+
+  <!-- メイン画面 -->
+  <div id="main" style="display:none;">
+    <h2 id="title"></h2>
+
+    <div class="info">
+      現在の待機数：<span id="waitingCount">0</span>名
+    </div>
+
+    <h3>受付</h3>
+    <div id="reception"></div>
+
+    <h3>待機中</h3>
+    <div id="waitingList"></div>
+
+    <button id="resetButton" class="reset">全リセット</button>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+  <!-- Firebase設定 -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAuLRxpzQ1tsjszhjgHiDZ8gRCbz9sy0BU",
+      authDomain: "fittingroom2-51523.firebaseapp.com",
+      databaseURL: "https://fittingroom2-51523-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "fittingroom2-51523",
+      storageBucket: "fittingroom2-51523.firebasestorage.app",
+      messagingSenderId: "204237803302",
+      appId: "1:204237803302:web:3d1dd4e87f414fe0433be7"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
