@@ -1,58 +1,37 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 20px;
+let storeNumber = "";
+let gender = "";
+
+// 店番入力
+function pressKey(num) {
+  if (storeNumber.length < 3) {
+    storeNumber += num;
+    document.getElementById("storeDisplay").textContent = storeNumber;
+  }
 }
 
-/* 性別ボタン */
-.gender-button {
-  font-size: 32px;
-  padding: 20px 40px;
-  width: 80%;
-  max-width: 300px;
-  height: 80px;
-  margin: 10px;
-  border-radius: 12px;
-  border: none;
-  background-color: #4CAF50;
-  color: white;
+function clearKey() {
+  storeNumber = "";
+  document.getElementById("storeDisplay").textContent = "---";
 }
 
-/* 店番テンキー */
-.keypad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  justify-content: center;
-  margin-top: 20px;
+function confirmStore() {
+  if (storeNumber === "") {
+    alert("店番を入力してください");
+    return;
+  }
+
+  document.getElementById("storeInput").style.display = "none";
+  document.getElementById("genderSelect").style.display = "block";
 }
 
-.keypad button {
-  font-size: 36px;
-  width: 100px;
-  height: 100px;
-  border-radius: 12px;
-  border: none;
-  background-color: #2196F3;
-  color: white;
-}
+// 性別選択
+function selectGender(g) {
+  gender = g;
 
-/* 店番表示 */
-#storeDisplay {
-  font-size: 40px;
-  margin: 20px 0;
-}
+  document.getElementById("genderSelect").style.display = "none";
+  document.getElementById("main").style.display = "block";
 
-/* 店番決定ボタン */
-#enterStoreButton {
-  font-size: 28px;
-  padding: 20px;
-  width: 80%;
-  max-width: 300px;
-  height: 80px;
-  margin-top: 20px;
-  border-radius: 12px;
-  border: none;
-  background-color: #FF9800;
-  color: white;
+  document.getElementById("title").textContent =
+    (gender === "men" ? "メンズ" : "レディース") +
+    " / 店番 " + storeNumber;
 }
