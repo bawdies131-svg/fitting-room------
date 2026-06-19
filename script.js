@@ -81,4 +81,13 @@ function removeNumber(index) {
   dbRef.once("value").then((snapshot) => {
     const list = snapshot.val() || [];
     list.splice(index, 1);
-    dbRef.set
+    dbRef.set(list);
+  });
+}
+
+// 全リセット
+document.getElementById("resetButton").onclick = () => {
+  if (confirm("本当にリセットしますか？")) {
+    dbRef.set([]);
+  }
+};
