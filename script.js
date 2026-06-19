@@ -36,7 +36,7 @@ function selectGender(g) {
     (gender === "men" ? "メンズ" : "レディース") +
     " / 店番 " + storeNumber;
 
-  // ★★★ Firebase の正しいパスに修正 ★★★
+  // Firebase の正しいパス
   dbRef = firebase.database().ref(`stores/${storeNumber}/${gender}/waiting`);
 
   // リアルタイム反映
@@ -72,3 +72,22 @@ function addNumber(num) {
   dbRef.once("value").then((snapshot) => {
     const list = snapshot.val() || [];
     list.push(num);
+    dbRef.set(list);   // ← ★これが抜けていた！
+  });
+}
+
+// 番号削除
+function removeNumber(index) {
+  dbRef.once("value").then((snapshot) => {
+    const list = snapshot.val() || [];
+    list.splice(index, 1);
+    dbRef.set(list);
+  });
+}
+
+// 全リセット
+document.getElementById("resetButton").onclick = () => {
+  if (confirm("本当にリセットしますか？")) {
+    dbRef.set([]);
+  }
+};
