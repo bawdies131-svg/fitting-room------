@@ -72,7 +72,7 @@ function addNumber(num) {
   dbRef.once("value").then((snapshot) => {
     const list = snapshot.val() || [];
     list.push(num);
-    dbRef.set(list);   // ← ★これが抜けていた！
+    dbRef.set(list);
   });
 }
 
