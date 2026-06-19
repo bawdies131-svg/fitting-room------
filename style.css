@@ -56,3 +56,51 @@ body {
   background-color: #FF9800;
   color: white;
 }
+/* 番号札ボタン */
+.number-buttons button {
+  font-size: 40px;
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+  border-radius: 12px;
+  border: none;
+  background-color: #FF5722;
+  color: white;
+}
+
+/* 待機中リスト */
+.waiting-item {
+  font-size: 32px;
+  padding: 15px;
+  margin: 10px auto;
+  width: 80%;
+  max-width: 300px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 回収ボタン */
+.waiting-item button {
+  font-size: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #E91E63;
+  color: white;
+}
+
+/* 全リセットボタン */
+.reset {
+  font-size: 28px;
+  padding: 20px;
+  width: 80%;
+  max-width: 300px;
+  margin-top: 20px;
+  border-radius: 12px;
+  border: none;
+  background-color: #9C27B0;
+  color: white;
+}
