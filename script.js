@@ -1,5 +1,6 @@
 let storeNumber = "";
 let gender = "";
+let dbRef = null;
 
 // 店番入力
 function pressKey(num) {
@@ -34,4 +35,59 @@ function selectGender(g) {
   document.getElementById("title").textContent =
     (gender === "men" ? "メンズ" : "レディース") +
     " / 店番 " + storeNumber;
+
+  // Firebase パス設定
+  dbRef = firebase.database().ref(`${storeNumber}/${gender}/waiting`);
+
+  // リアルタイム反映
+  dbRef.on("value", (snapshot) => {
+    const data = snapshot.val() || [];
+    renderWaitingList(data);
+  });
 }
+
+// 待機リスト描画
+function renderWaitingList(list) {
+  const waitingList = document.getElementById("waitingList");
+  waitingList.innerHTML = "";
+
+  list.forEach((num, index) => {
+    const div = document.createElement("div");
+    div.textContent = num;
+    div.className = "waiting-item";
+
+    const btn = document.createElement("button");
+    btn.textContent = "回収";
+    btn.onclick = () => removeNumber(index);
+
+    div.appendChild(btn);
+    waitingList.appendChild(div);
+  });
+
+  document.getElementById("waitingCount").textContent = list.length;
+}
+
+// 番号追加（1〜8 のボタン用）
+function addNumber(num) {
+  dbRef.once("value").then((snapshot) => {
+    const list = snapshot.val() || [];
+    list.push(num);
+    dbRef.set(list);
+  });
+}
+
+// 番号削除
+function removeNumber(index) {
+  dbRef.once("value").then((snapshot) => {
+    const list = snapshot.val() || [];
+    list.splice(index, 1);
+    dbRef.set(list);
+  });
+}
+
+// 全リセット
+document.getElementById("resetButton").onclick = () => {
+  if (confirm("本当にリセットしますか？")) {
+    dbRef.set([]);
+  }
+};
