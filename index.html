@@ -5,67 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>試着室番号管理</title>
   <link rel="stylesheet" href="style.css" />
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
-
-    /* 性別ボタン */
-    .gender-button {
-      font-size: 32px;
-      padding: 20px 40px;
-      width: 80%;
-      max-width: 300px;
-      height: 80px;
-      margin: 10px;
-      border-radius: 12px;
-      border: none;
-      background-color: #4CAF50;
-      color: white;
-    }
-
-    /* 店番テンキー */
-    .keypad {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    .keypad button {
-      font-size: 36px;
-      width: 100px;
-      height: 100px;
-      border-radius: 12px;
-      border: none;
-      background-color: #2196F3;
-      color: white;
-    }
-
-    /* 店番表示 */
-    #storeDisplay {
-      font-size: 40px;
-      margin: 20px 0;
-    }
-
-    /* 店番決定ボタン */
-    #enterStoreButton {
-      font-size: 28px;
-      padding: 20px;
-      width: 80%;
-      max-width: 300px;
-      height: 80px;
-      margin-top: 20px;
-      border-radius: 12px;
-      border: none;
-      background-color: #FF9800;
-      color: white;
-    }
-  </style>
 </head>
 
 <body>
@@ -87,52 +26,5 @@
       <button onclick="pressKey(9)">9</button>
       <button onclick="clearKey()">C</button>
       <button onclick="pressKey(0)">0</button>
-      <button onclick="confirmStore()">決定</button>
-    </div>
-  </div>
 
-  <!-- 性別選択 -->
-  <div id="genderSelect" style="display:none;">
-    <h2>性別を選択してください</h2>
-    <button class="gender-button" onclick="selectGender('men')">メンズ</button>
-    <button class="gender-button" onclick="selectGender('women')">レディース</button>
-  </div>
-
-  <!-- メイン画面 -->
-  <div id="main" style="display:none;">
-    <h2 id="title"></h2>
-
-    <div class="info">
-      現在の待機数：<span id="waitingCount">0</span>名
-    </div>
-
-    <h3>受付</h3>
-    <div id="reception"></div>
-
-    <h3>待機中</h3>
-    <div id="waitingList"></div>
-
-    <button id="resetButton" class="reset">全リセット</button>
-  </div>
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
-  <!-- Firebase設定 -->
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyAuLRxpzQ1tsjszhjgHiDZ8gRCbz9sy0BU",
-      authDomain: "fittingroom2-51523.firebaseapp.com",
-      databaseURL: "https://fittingroom2-51523-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "fittingroom2-51523",
-      storageBucket: "fittingroom2-51523.firebasestorage.app",
-      messagingSenderId: "204237803302",
-      appId: "1:204237803302:web:3d1dd4e87f414fe0433be7"
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
-
-  <script src="script.js"></script>
-</body>
-</html>
+      <!-- ★ CSS が当たるように id を追加 -->
