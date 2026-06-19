@@ -1,100 +1,58 @@
-*{
-    box-sizing:border-box;
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
 }
 
-body{
-    margin:0;
-    background:#121212;
-    color:white;
-    font-family:sans-serif;
+/* 性別ボタン */
+.gender-button {
+  font-size: 32px;
+  padding: 20px 40px;
+  width: 80%;
+  max-width: 300px;
+  height: 80px;
+  margin: 10px;
+  border-radius: 12px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
 }
 
-.container{
-    max-width:800px;
-    margin:auto;
-    padding:20px;
+/* 店番テンキー */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-h1{
-    text-align:center;
-    margin-bottom:30px;
+.keypad button {
+  font-size: 36px;
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  border: none;
+  background-color: #2196F3;
+  color: white;
 }
 
-.section{
-    background:#1e1e1e;
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:20px;
+/* 店番表示 */
+#storeDisplay {
+  font-size: 40px;
+  margin: 20px 0;
 }
 
-h2{
-    margin-top:0;
-}
-
-.reception-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
-
-.number-button{
-    background:#2e7d32;
-    color:white;
-    border:none;
-    border-radius:15px;
-    font-size:42px;
-    height:100px;
-    cursor:pointer;
-}
-
-.card{
-    background:#2a2a2a;
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:15px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.number{
-    font-size:30px;
-}
-
-.action-button{
-    background:#1976d2;
-    color:white;
-    border:none;
-    border-radius:10px;
-    padding:12px 20px;
-    font-size:20px;
-    cursor:pointer;
-}
-
-.return-button{
-    background:#ef6c00;
-    color:white;
-    border:none;
-    border-radius:10px;
-    padding:12px 20px;
-    font-size:20px;
-    cursor:pointer;
-}
-
-.reset-button{
-    width:100%;
-    background:#c62828;
-    color:white;
-    border:none;
-    border-radius:15px;
-    padding:20px;
-    font-size:24px;
-    cursor:pointer;
-}
-
-.empty{
-    color:#999;
-    text-align:center;
-    font-size:20px;
+/* 店番決定ボタン */
+#enterStoreButton {
+  font-size: 28px;
+  padding: 20px;
+  width: 80%;
+  max-width: 300px;
+  height: 80px;
+  margin-top: 20px;
+  border-radius: 12px;
+  border: none;
+  background-color: #FF9800;
+  color: white;
 }
