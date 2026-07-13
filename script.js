@@ -36,28 +36,27 @@ function selectGender(g) {
     (gender === "men" ? "メンズ" : "レディース") +
     " / 店番 " + storeNumber;
 
-  // Firebase の正しいパス
+  // Firebase のパス
   dbRef = firebase.database().ref(`stores/${storeNumber}/${gender}/waiting`);
 
-  // リアルタイム反映
+  // リアルタイム同期
   dbRef.on("value", (snapshot) => {
     const data = snapshot.val() || [];
     renderWaitingList(data);
-    updateButtons(data); // ← 追加：番号札の表示/非表示を同期
+    updateButtons(data);
   });
 }
 
-// 番号札の表示/非表示を Firebase と同期
+// 番号札の表示・非表示
 function updateButtons(list) {
-  // 1〜8 のボタンをチェック
   for (let i = 1; i <= 8; i++) {
     const btn = document.querySelector(`button[data-num="${i}"]`);
     if (!btn) continue;
 
     if (list.includes(i)) {
-      btn.style.display = "none"; // 使用中 → 非表示
+      btn.style.display = "none";
     } else {
-      btn.style.display = "inline-block"; // 空き → 表示
+      btn.style.display = "inline-block";
     }
   }
 }
@@ -69,8 +68,8 @@ function renderWaitingList(list) {
 
   list.forEach((num, index) => {
     const div = document.createElement("div");
-    div.textContent = num;
     div.className = "waiting-item";
+    div.textContent = num;
 
     const btn = document.createElement("button");
     btn.textContent = "回収";
@@ -83,32 +82,24 @@ function renderWaitingList(list) {
   document.getElementById("waitingCount").textContent = list.length;
 }
 
-// 番号追加（押したら消える）
+// 番号追加
 function addNumber(num) {
-  // ボタンを非表示にする
-  const btn = document.querySelector(`button[data-num="${num}"]`);
-  if (btn) btn.style.display = "none";
-
-  // Firebase に追加
   dbRef.once("value").then((snapshot) => {
     const list = snapshot.val() || [];
-    list.push(num);
-    dbRef.set(list);
+
+    if (!list.includes(num)) {
+      list.push(num);
+      dbRef.set(list);
+    }
   });
 }
 
-// 番号削除（回収したら復活）
+// 番号削除
 function removeNumber(index) {
   dbRef.once("value").then((snapshot) => {
     const list = snapshot.val() || [];
-    const removed = list[index]; // 回収した番号
-
     list.splice(index, 1);
     dbRef.set(list);
-
-    // ボタンを復活
-    const btn = document.querySelector(`button[data-num="${removed}"]`);
-    if (btn) btn.style.display = "inline-block";
   });
 }
 
@@ -118,3 +109,33 @@ document.getElementById("resetButton").onclick = () => {
     dbRef.set([]);
   }
 };
+
+// =========================
+// 戻るボタン
+// =========================
+function goBack() {
+
+  // Firebase監視解除
+  if (dbRef) {
+    dbRef.off();
+  }
+
+  // 初期化
+  storeNumber = "";
+  gender = "";
+  dbRef = null;
+
+  document.getElementById("storeDisplay").textContent = "---";
+  document.getElementById("waitingList").innerHTML = "";
+  document.getElementById("waitingCount").textContent = "0";
+
+  // 番号札を全部表示
+  document.querySelectorAll(".number-buttons button").forEach(btn => {
+    btn.style.display = "inline-block";
+  });
+
+  // 画面切替
+  document.getElementById("main").style.display = "none";
+  document.getElementById("genderSelect").style.display = "none";
+  document.getElementById("storeInput").style.display = "block";
+}
