@@ -57,17 +57,17 @@ h3 {
 }
 .number-buttons {
   display: grid;
-  grid-template-columns: repeat(4, 90px);
-  gap: 15px;
+  grid-template-columns: repeat(4, 80px);
+  gap: 12px;
   justify-content: center;
   margin: 20px 0;
 }
 .number-buttons button {
   background: #1976d2;
   color: white;
-  width: 90px;
-  height: 90px;
-  font-size: 32px;
+  width: 80px;
+  height: 80px;
+  font-size: 28px;
   font-weight: bold;
 }
 button:hover {
