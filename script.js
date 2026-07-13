@@ -141,8 +141,6 @@ function addNumber(num){
 
     dbRef.set(list);
 
-    showToast(`✅ 番号札${num}を受付しました`);
-
   });
 
 }
@@ -159,8 +157,5 @@ function removeNumber(index){
     list.splice(index,1);
 
     dbRef.set(list);
-
-    showToast(`✅ 番号札${num}を回収しました`);
-
   });
 }
