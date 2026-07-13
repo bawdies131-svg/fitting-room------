@@ -129,3 +129,12 @@ button:disabled {
 #toast.show {
   opacity: 1;
 }
+.clear-btn {
+  background: #fbc02d !important;
+  color: white;
+}
+
+.enter-btn {
+  background: #ef6c00 !important;
+  color: white;
+}
