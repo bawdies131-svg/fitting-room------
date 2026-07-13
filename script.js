@@ -98,21 +98,6 @@ function renderWaitingList(list) {
   document.getElementById("waitingCount").textContent = list.length;
 
 }
-
-// トースト表示
-function showToast(message){
-
-  const toast = document.getElementById("toast");
-
-  toast.textContent = message;
-  toast.classList.add("show");
-
-  setTimeout(()=>{
-    toast.classList.remove("show");
-  },800);
-
-}
-
 // 番号札追加
 function addNumber(num){
 
