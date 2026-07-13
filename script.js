@@ -34,7 +34,7 @@ function selectGender(g) {
 
   document.getElementById("title").textContent =
     (gender === "men" ? "メンズ" : "レディース") +
-    " / 店番 " + storeNumber;
+    " ／ 店番 " + storeNumber;
 
   dbRef = firebase.database().ref(`stores/${storeNumber}/${gender}/waiting`);
 
@@ -45,60 +45,80 @@ function selectGender(g) {
   });
 }
 
-// 番号札の表示・非表示
+// 番号札ボタン表示
 function updateButtons(list) {
   for (let i = 1; i <= 8; i++) {
     const btn = document.querySelector(`button[data-num="${i}"]`);
     if (!btn) continue;
 
-    btn.style.display = list.includes(i) ? "none" : "inline-block";
+    btn.style.display = list.includes(i)
+      ? "none"
+      : "inline-block";
   }
 }
 
 // 待機リスト表示
 function renderWaitingList(list) {
+
   const waitingList = document.getElementById("waitingList");
   waitingList.innerHTML = "";
 
-  list.forEach((num, index) => {
+  const order = ["①","②","③","④","⑤","⑥","⑦","⑧"];
+
+  list.forEach((num,index)=>{
+
     const item = document.createElement("div");
     item.className = "waiting-item";
 
     const text = document.createElement("span");
-    text.textContent = num;
+    text.textContent = `${order[index]}　番号札${num}`;
 
     const button = document.createElement("button");
     button.textContent = "回収";
-    button.onclick = () => removeNumber(index);
+
+    button.onclick = () => {
+      removeNumber(index);
+    };
 
     item.appendChild(text);
     item.appendChild(button);
 
     waitingList.appendChild(item);
+
   });
 
   document.getElementById("waitingCount").textContent = list.length;
+
 }
 
-// 番号追加
-function addNumber(num) {
-  dbRef.once("value").then((snapshot) => {
+// 番号札追加
+function addNumber(num){
+
+  dbRef.once("value").then(snapshot=>{
+
     const list = snapshot.val() || [];
 
-    if (!list.includes(num)) {
-      list.push(num);
-      dbRef.set(list);
-    }
+    if(list.includes(num)) return;
+
+    list.push(num);
+
+    dbRef.set(list);
+
   });
+
 }
 
 // 回収
-function removeNumber(index) {
-  dbRef.once("value").then((snapshot) => {
+function removeNumber(index){
+
+  dbRef.once("value").then(snapshot=>{
+
     const list = snapshot.val() || [];
 
-    list.splice(index, 1);
+    list.splice(index,1);
 
     dbRef.set(list);
+
   });
+
 }
