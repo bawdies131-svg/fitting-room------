@@ -8,19 +8,19 @@ body {
 
 h2,
 h3 {
-  margin: 15px 0;
   color: #333;
+  margin: 20px 0;
 }
 
 #storeDisplay {
   width: 180px;
   margin: 20px auto;
   padding: 15px;
-  font-size: 32px;
-  font-weight: bold;
   background: #fff;
   border: 2px solid #2e7d32;
   border-radius: 10px;
+  font-size: 32px;
+  font-weight: bold;
 }
 
 .keypad {
@@ -41,19 +41,12 @@ h3 {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .keypad button {
   background: #2e7d32;
   color: white;
-}
-
-.keypad button:hover,
-.gender-button:hover,
-.number-buttons button:hover,
-.waiting-item button:hover,
-.back-link:hover {
-  opacity: 0.9;
 }
 
 .gender-button {
@@ -76,14 +69,17 @@ h3 {
   color: white;
 }
 
-.info {
-  font-size: 22px;
-  font-weight: bold;
-  margin: 20px 0;
+button:hover {
+  opacity: .9;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
 }
 
 #waitingList {
-  max-width: 400px;
+  max-width: 420px;
   margin: 20px auto;
 }
 
@@ -93,19 +89,42 @@ h3 {
   align-items: center;
   background: white;
   margin-bottom: 10px;
-  padding: 12px;
+  padding: 12px 16px;
   border-radius: 8px;
-  font-size: 24px;
+  font-size: 22px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.08);
 }
 
 .waiting-item button {
   background: #d32f2f;
   color: white;
+  min-width: 80px;
 }
 
 .back-link {
+  width: 240px;
   margin-top: 30px;
   background: #555;
   color: white;
-  width: 240px;
+}
+
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  background: #2e7d32;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,.25);
+}
+
+#toast.show {
+  opacity: 1;
 }
