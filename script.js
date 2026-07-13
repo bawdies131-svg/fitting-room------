@@ -27,6 +27,7 @@ function confirmStore() {
 
 // 性別選択
 function selectGender(g) {
+
   gender = g;
 
   document.getElementById("genderSelect").style.display = "none";
@@ -38,26 +39,35 @@ function selectGender(g) {
 
   dbRef = firebase.database().ref(`stores/${storeNumber}/${gender}/waiting`);
 
-  dbRef.on("value", (snapshot) => {
+  dbRef.on("value", snapshot => {
+
     const list = snapshot.val() || [];
+
     renderWaitingList(list);
     updateButtons(list);
+
   });
+
 }
 
-// 番号札ボタン表示
+// 番号札表示
 function updateButtons(list) {
+
   for (let i = 1; i <= 8; i++) {
+
     const btn = document.querySelector(`button[data-num="${i}"]`);
+
     if (!btn) continue;
 
     btn.style.display = list.includes(i)
       ? "none"
       : "inline-block";
+
   }
+
 }
 
-// 待機リスト表示
+// 待機リスト
 function renderWaitingList(list) {
 
   const waitingList = document.getElementById("waitingList");
@@ -76,9 +86,7 @@ function renderWaitingList(list) {
     const button = document.createElement("button");
     button.textContent = "回収";
 
-    button.onclick = () => {
-      removeNumber(index);
-    };
+    button.onclick = ()=>removeNumber(index);
 
     item.appendChild(text);
     item.appendChild(button);
@@ -91,8 +99,37 @@ function renderWaitingList(list) {
 
 }
 
+// トースト表示
+function showToast(message){
+
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },800);
+
+}
+
 // 番号札追加
 function addNumber(num){
+
+  // スマホなら振動
+  if(navigator.vibrate){
+    navigator.vibrate(40);
+  }
+
+  const btn = document.querySelector(`button[data-num="${num}"]`);
+
+  btn.disabled = true;
+  btn.style.background = "#9e9e9e";
+
+  setTimeout(()=>{
+    btn.disabled = false;
+    btn.style.background = "#1976d2";
+  },300);
 
   dbRef.once("value").then(snapshot=>{
 
@@ -103,6 +140,8 @@ function addNumber(num){
     list.push(num);
 
     dbRef.set(list);
+
+    showToast(`✅ 番号札${num}を受付しました`);
 
   });
 
@@ -115,10 +154,12 @@ function removeNumber(index){
 
     const list = snapshot.val() || [];
 
+    const num = list[index];
+
     list.splice(index,1);
 
     dbRef.set(list);
 
-  });
+    showToast(`✅ 番号札${num}を回収しました`);
 
-}
+  });
