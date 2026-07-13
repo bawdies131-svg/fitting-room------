@@ -4,14 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>試着室番号管理</title>
-  <link rel="stylesheet" href="style.css?v=9001" />
+  <link rel="stylesheet" href="style.css?v=9002" />
 </head>
 
 <body>
 
-  <!-- 店番入力（テンキー） -->
+  <!-- 戻る（店番変更） -->
+  <button id="backToStoreButton" class="back-link" onclick="backToStore()" style="display:none;">
+    ← 店番変更
+  </button>
+
+  <!-- 戻る（性別変更） -->
+  <button id="backToGenderButton" class="back-link" onclick="backToGender()" style="display:none;">
+    ← 性別変更
+  </button>
+
+  <!-- 店番入力 -->
   <div id="storeInput">
     <h2>店番を入力してください</h2>
+
     <div id="storeDisplay">---</div>
 
     <div class="keypad">
@@ -32,20 +43,31 @@
 
   <!-- 性別選択 -->
   <div id="genderSelect" style="display:none;">
+
     <h2>性別を選択してください</h2>
-    <button class="gender-button" onclick="selectGender('men')">メンズ</button>
-    <button class="gender-button" onclick="selectGender('women')">レディース</button>
+
+    <button class="gender-button" onclick="selectGender('men')">
+      メンズ
+    </button>
+
+    <button class="gender-button" onclick="selectGender('women')">
+      レディース
+    </button>
+
   </div>
 
-  <!-- メイン画面 -->
+  <!-- メイン -->
   <div id="main" style="display:none;">
+
     <h2 id="title"></h2>
 
     <div class="info">
-      現在の待機数：<span id="waitingCount">0</span>名
+      現在の待機数：
+      <span id="waitingCount">0</span>名
     </div>
 
     <h3>番号札</h3>
+
     <div class="number-buttons">
       <button data-num="1" onclick="addNumber(1)">1</button>
       <button data-num="2" onclick="addNumber(2)">2</button>
@@ -58,23 +80,20 @@
     </div>
 
     <h3>待機中</h3>
+
     <div id="waitingList"></div>
 
-    <button id="resetButton" class="reset">全リセット</button>
-
-    <!-- ★追加：戻るボタン -->
-    <button id="backButton" class="back" onclick="goBack()">
-      ← 戻る
+    <button id="resetButton" class="reset">
+      全リセット
     </button>
 
   </div>
 
-  <!-- Firebase SDK -->
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-  <!-- Firebase設定 -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyAuLRxpzQ1tsjszhjgHiDZ8gRCbz9sy0BU",
@@ -88,18 +107,16 @@
 
     firebase.initializeApp(firebaseConfig);
 
-    // 匿名認証
     firebase.auth().signInAnonymously()
       .then(() => {
         console.log("匿名認証成功");
       })
       .catch((error) => {
-        console.error("匿名認証失敗", error);
+        console.error(error);
       });
   </script>
 
-  <!-- メインスクリプト -->
-  <script src="script.js?v=9001"></script>
+  <script src="script.js?v=9002"></script>
 
 </body>
 </html>
