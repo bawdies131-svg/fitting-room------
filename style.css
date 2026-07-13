@@ -1,160 +1,111 @@
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 20px;
+  font-family: sans-serif;
+  background: #f5f5f5;
   margin: 0;
+  padding: 20px;
+  text-align: center;
 }
 
-/* ===== 戻るリンク ===== */
-.back-link {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  background: none;
-  border: none;
-  color: #2196F3;
-  font-size: 22px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 999;
-  padding: 8px;
+h2,
+h3 {
+  margin: 15px 0;
+  color: #333;
 }
 
-.back-link:hover {
-  color: #1976D2;
-}
-
-/* ===== 性別ボタン ===== */
-.gender-button {
+#storeDisplay {
+  width: 180px;
+  margin: 20px auto;
+  padding: 15px;
   font-size: 32px;
-  padding: 20px 40px;
-  width: 80%;
-  max-width: 300px;
-  height: 80px;
-  margin: 10px;
-  border-radius: 12px;
-  border: none;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
+  font-weight: bold;
+  background: #fff;
+  border: 2px solid #2e7d32;
+  border-radius: 10px;
 }
 
-/* ===== 店番テンキー ===== */
 .keypad {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  justify-items: center;
+  grid-template-columns: repeat(3, 80px);
+  gap: 10px;
+  justify-content: center;
   margin-top: 20px;
 }
 
+.keypad button,
+.gender-button,
+.number-buttons button,
+.waiting-item button,
+.back-link {
+  font-size: 20px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 .keypad button {
-  font-size: 36px;
-  width: 100px;
-  height: 100px;
-  border-radius: 12px;
-  border: none;
-  background-color: #2196F3;
+  background: #2e7d32;
   color: white;
-  cursor: pointer;
 }
 
-/* ===== 店番表示 ===== */
-#storeDisplay {
-  font-size: 42px;
-  margin: 20px 0;
-  font-weight: bold;
+.keypad button:hover,
+.gender-button:hover,
+.number-buttons button:hover,
+.waiting-item button:hover,
+.back-link:hover {
+  opacity: 0.9;
 }
 
-/* ===== 決定ボタン ===== */
-#enterStoreButton {
-  grid-column: span 3;
-  font-size: 28px;
-  padding: 20px;
-  width: 80%;
-  max-width: 300px;
-  height: 80px;
-  border-radius: 12px;
-  border: none;
-  background-color: #FF9800;
-  color: white;
-  cursor: pointer;
-}
-
-/* ===== 番号札 ===== */
-.number-buttons button {
-  font-size: 40px;
-  width: 80px;
-  height: 80px;
+.gender-button {
+  width: 220px;
   margin: 10px;
-  border-radius: 12px;
-  border: none;
-  background-color: #FF5722;
+  background: #2e7d32;
   color: white;
-  cursor: pointer;
 }
 
-/* ===== 待機リスト ===== */
+.number-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 70px);
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.number-buttons button {
+  background: #1976d2;
+  color: white;
+}
+
+.info {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+#waitingList {
+  max-width: 400px;
+  margin: 20px auto;
+}
+
 .waiting-item {
-  font-size: 32px;
-  padding: 15px;
-  margin: 10px auto;
-  width: 80%;
-  max-width: 320px;
-  background: #f0f0f0;
-  border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: white;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 24px;
 }
 
 .waiting-item button {
-  font-size: 20px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  background: #E91E63;
+  background: #d32f2f;
   color: white;
-  cursor: pointer;
 }
 
-/* ===== 全リセット ===== */
-.reset {
-  font-size: 28px;
-  padding: 20px;
-  width: 80%;
-  max-width: 320px;
-  margin-top: 25px;
-  border-radius: 12px;
-  border: none;
-  background: #9C27B0;
+.back-link {
+  margin-top: 30px;
+  background: #555;
   color: white;
-  cursor: pointer;
-}
-
-.reset:hover {
-  background: #7B1FA2;
-}
-
-/* ===== スマホ対応 ===== */
-@media (max-width: 480px) {
-
-  .back-link {
-    font-size: 20px;
-    top: 10px;
-    left: 10px;
-  }
-
-  .keypad button {
-    width: 90px;
-    height: 90px;
-    font-size: 32px;
-  }
-
-  .number-buttons button {
-    width: 75px;
-    height: 75px;
-    font-size: 34px;
-  }
-
+  width: 240px;
 }
