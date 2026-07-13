@@ -55,20 +55,21 @@ h3 {
   background: #2e7d32;
   color: white;
 }
-
 .number-buttons {
   display: grid;
-  grid-template-columns: repeat(4, 70px);
-  gap: 10px;
+  grid-template-columns: repeat(4, 90px);
+  gap: 15px;
   justify-content: center;
   margin: 20px 0;
 }
-
 .number-buttons button {
   background: #1976d2;
   color: white;
+  width: 90px;
+  height: 90px;
+  font-size: 32px;
+  font-weight: bold;
 }
-
 button:hover {
   opacity: .9;
 }
