@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>試着室番号管理</title>
 
-  <link rel="stylesheet" href="style.css?v=9004">
+  <link rel="stylesheet" href="style.css?v=9005">
 </head>
 
 <body>
@@ -43,11 +43,13 @@
 
     <h2>性別を選択してください</h2>
 
-    <button class="gender-button" onclick="selectGender('men')">
+    <button class="gender-button"
+            onclick="selectGender('men')">
       メンズ
     </button>
 
-    <button class="gender-button" onclick="selectGender('women')">
+    <button class="gender-button"
+            onclick="selectGender('women')">
       レディース
     </button>
 
@@ -73,12 +75,17 @@
     </div>
 
     <h3>
-      待機中　<span id="waitingCount">0</span>名
+      待機中　
+      <span id="waitingCount">0</span>名
     </h3>
 
     <div id="waitingList"></div>
 
-    <button class="back-link" onclick="location.reload()">
+    <!-- 受付完了メッセージ -->
+    <div id="toast"></div>
+
+    <button class="back-link"
+            onclick="location.reload()">
       🏠 トップページへ
     </button>
 
@@ -112,7 +119,7 @@
       });
   </script>
 
-  <script src="script.js?v=9004"></script>
+  <script src="script.js?v=9005"></script>
 
 </body>
 </html>
