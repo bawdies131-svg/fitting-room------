@@ -2,9 +2,29 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   padding: 20px;
+  margin: 0;
 }
 
-/* 性別ボタン */
+/* ===== 戻るリンク ===== */
+.back-link {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: none;
+  border: none;
+  color: #2196F3;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 999;
+  padding: 8px;
+}
+
+.back-link:hover {
+  color: #1976D2;
+}
+
+/* ===== 性別ボタン ===== */
 .gender-button {
   font-size: 32px;
   padding: 20px 40px;
@@ -16,14 +36,15 @@ body {
   border: none;
   background-color: #4CAF50;
   color: white;
+  cursor: pointer;
 }
 
-/* 店番テンキー */
+/* ===== 店番テンキー ===== */
 .keypad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
-  justify-content: center;
+  justify-items: center;
   margin-top: 20px;
 }
 
@@ -35,28 +56,32 @@ body {
   border: none;
   background-color: #2196F3;
   color: white;
+  cursor: pointer;
 }
 
-/* 店番表示 */
+/* ===== 店番表示 ===== */
 #storeDisplay {
-  font-size: 40px;
+  font-size: 42px;
   margin: 20px 0;
+  font-weight: bold;
 }
 
-/* 店番決定ボタン */
+/* ===== 決定ボタン ===== */
 #enterStoreButton {
+  grid-column: span 3;
   font-size: 28px;
   padding: 20px;
   width: 80%;
   max-width: 300px;
   height: 80px;
-  margin-top: 20px;
   border-radius: 12px;
   border: none;
   background-color: #FF9800;
   color: white;
+  cursor: pointer;
 }
-/* 番号札ボタン */
+
+/* ===== 番号札 ===== */
 .number-buttons button {
   font-size: 40px;
   width: 80px;
@@ -66,41 +91,70 @@ body {
   border: none;
   background-color: #FF5722;
   color: white;
+  cursor: pointer;
 }
 
-/* 待機中リスト */
+/* ===== 待機リスト ===== */
 .waiting-item {
   font-size: 32px;
   padding: 15px;
   margin: 10px auto;
   width: 80%;
-  max-width: 300px;
-  background-color: #f0f0f0;
+  max-width: 320px;
+  background: #f0f0f0;
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* 回収ボタン */
 .waiting-item button {
   font-size: 20px;
   padding: 10px 20px;
   border: none;
   border-radius: 8px;
-  background-color: #E91E63;
+  background: #E91E63;
   color: white;
+  cursor: pointer;
 }
 
-/* 全リセットボタン */
+/* ===== 全リセット ===== */
 .reset {
   font-size: 28px;
   padding: 20px;
   width: 80%;
-  max-width: 300px;
-  margin-top: 20px;
+  max-width: 320px;
+  margin-top: 25px;
   border-radius: 12px;
   border: none;
-  background-color: #9C27B0;
+  background: #9C27B0;
   color: white;
+  cursor: pointer;
+}
+
+.reset:hover {
+  background: #7B1FA2;
+}
+
+/* ===== スマホ対応 ===== */
+@media (max-width: 480px) {
+
+  .back-link {
+    font-size: 20px;
+    top: 10px;
+    left: 10px;
+  }
+
+  .keypad button {
+    width: 90px;
+    height: 90px;
+    font-size: 32px;
+  }
+
+  .number-buttons button {
+    width: 75px;
+    height: 75px;
+    font-size: 34px;
+  }
+
 }
