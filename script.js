@@ -36,14 +36,12 @@ function selectGender(g) {
     (gender === "men" ? "メンズ" : "レディース") +
     " / 店番 " + storeNumber;
 
-  // Firebase のパス
   dbRef = firebase.database().ref(`stores/${storeNumber}/${gender}/waiting`);
 
-  // リアルタイム同期
   dbRef.on("value", (snapshot) => {
-    const data = snapshot.val() || [];
-    renderWaitingList(data);
-    updateButtons(data);
+    const list = snapshot.val() || [];
+    renderWaitingList(list);
+    updateButtons(list);
   });
 }
 
@@ -53,30 +51,30 @@ function updateButtons(list) {
     const btn = document.querySelector(`button[data-num="${i}"]`);
     if (!btn) continue;
 
-    if (list.includes(i)) {
-      btn.style.display = "none";
-    } else {
-      btn.style.display = "inline-block";
-    }
+    btn.style.display = list.includes(i) ? "none" : "inline-block";
   }
 }
 
-// 待機リスト描画
+// 待機リスト表示
 function renderWaitingList(list) {
   const waitingList = document.getElementById("waitingList");
   waitingList.innerHTML = "";
 
   list.forEach((num, index) => {
-    const div = document.createElement("div");
-    div.className = "waiting-item";
-    div.textContent = num;
+    const item = document.createElement("div");
+    item.className = "waiting-item";
 
-    const btn = document.createElement("button");
-    btn.textContent = "回収";
-    btn.onclick = () => removeNumber(index);
+    const text = document.createElement("span");
+    text.textContent = num;
 
-    div.appendChild(btn);
-    waitingList.appendChild(div);
+    const button = document.createElement("button");
+    button.textContent = "回収";
+    button.onclick = () => removeNumber(index);
+
+    item.appendChild(text);
+    item.appendChild(button);
+
+    waitingList.appendChild(item);
   });
 
   document.getElementById("waitingCount").textContent = list.length;
@@ -94,96 +92,13 @@ function addNumber(num) {
   });
 }
 
-// 番号削除
+// 回収
 function removeNumber(index) {
   dbRef.once("value").then((snapshot) => {
     const list = snapshot.val() || [];
+
     list.splice(index, 1);
+
     dbRef.set(list);
   });
-}
-
-// 全リセット
-document.getElementById("resetButton").onclick = () => {
-  if (confirm("本当にリセットしますか？")) {
-    dbRef.set([]);
-  }
-};
-
-// =========================
-// 戻るボタン
-// =========================
-function goBack() {
-  // =========================
-// 店番選択へ戻る
-// =========================
-function backToStore() {
-
-  if (dbRef) {
-    dbRef.off();
-  }
-
-  storeNumber = "";
-  gender = "";
-  dbRef = null;
-
-  document.getElementById("storeDisplay").textContent = "---";
-  document.getElementById("waitingList").innerHTML = "";
-  document.getElementById("waitingCount").textContent = "0";
-
-  document.querySelectorAll(".number-buttons button").forEach(btn => {
-    btn.style.display = "inline-block";
-  });
-
-  document.getElementById("main").style.display = "none";
-  document.getElementById("genderSelect").style.display = "none";
-  document.getElementById("storeInput").style.display = "block";
-}
-
-// =========================
-// 性別選択へ戻る
-// =========================
-function backToGender() {
-
-  if (dbRef) {
-    dbRef.off();
-  }
-
-  gender = "";
-  dbRef = null;
-
-  document.getElementById("waitingList").innerHTML = "";
-  document.getElementById("waitingCount").textContent = "0";
-
-  document.querySelectorAll(".number-buttons button").forEach(btn => {
-    btn.style.display = "inline-block";
-  });
-
-  document.getElementById("main").style.display = "none";
-  document.getElementById("genderSelect").style.display = "block";
-}
-
-  // Firebase監視解除
-  if (dbRef) {
-    dbRef.off();
-  }
-
-  // 初期化
-  storeNumber = "";
-  gender = "";
-  dbRef = null;
-
-  document.getElementById("storeDisplay").textContent = "---";
-  document.getElementById("waitingList").innerHTML = "";
-  document.getElementById("waitingCount").textContent = "0";
-
-  // 番号札を全部表示
-  document.querySelectorAll(".number-buttons button").forEach(btn => {
-    btn.style.display = "inline-block";
-  });
-
-  // 画面切替
-  document.getElementById("main").style.display = "none";
-  document.getElementById("genderSelect").style.display = "none";
-  document.getElementById("storeInput").style.display = "block";
 }
