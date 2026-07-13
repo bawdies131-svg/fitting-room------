@@ -163,3 +163,4 @@ function removeNumber(index){
     showToast(`✅ 番号札${num}を回収しました`);
 
   });
+}
