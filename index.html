@@ -65,6 +65,7 @@
 
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
   <!-- Firebase設定 -->
@@ -78,10 +79,21 @@
       messagingSenderId: "204237803302",
       appId: "1:204237803302:web:3d1dd4e87f414fe0433be7"
     };
+
     firebase.initializeApp(firebaseConfig);
+
+    // 匿名認証
+    firebase.auth().signInAnonymously()
+      .then(() => {
+        console.log("匿名認証成功");
+      })
+      .catch((error) => {
+        console.error("匿名認証失敗", error);
+      });
   </script>
 
   <!-- メインスクリプト -->
   <script src="script.js?v=9001"></script>
+
 </body>
 </html>
