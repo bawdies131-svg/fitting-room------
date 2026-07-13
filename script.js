@@ -114,6 +114,54 @@ document.getElementById("resetButton").onclick = () => {
 // 戻るボタン
 // =========================
 function goBack() {
+  // =========================
+// 店番選択へ戻る
+// =========================
+function backToStore() {
+
+  if (dbRef) {
+    dbRef.off();
+  }
+
+  storeNumber = "";
+  gender = "";
+  dbRef = null;
+
+  document.getElementById("storeDisplay").textContent = "---";
+  document.getElementById("waitingList").innerHTML = "";
+  document.getElementById("waitingCount").textContent = "0";
+
+  document.querySelectorAll(".number-buttons button").forEach(btn => {
+    btn.style.display = "inline-block";
+  });
+
+  document.getElementById("main").style.display = "none";
+  document.getElementById("genderSelect").style.display = "none";
+  document.getElementById("storeInput").style.display = "block";
+}
+
+// =========================
+// 性別選択へ戻る
+// =========================
+function backToGender() {
+
+  if (dbRef) {
+    dbRef.off();
+  }
+
+  gender = "";
+  dbRef = null;
+
+  document.getElementById("waitingList").innerHTML = "";
+  document.getElementById("waitingCount").textContent = "0";
+
+  document.querySelectorAll(".number-buttons button").forEach(btn => {
+    btn.style.display = "inline-block";
+  });
+
+  document.getElementById("main").style.display = "none";
+  document.getElementById("genderSelect").style.display = "block";
+}
 
   // Firebase監視解除
   if (dbRef) {
