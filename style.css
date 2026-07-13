@@ -138,3 +138,6 @@ button:disabled {
   background: #ef6c00 !important;
   color: white;
 }
+button {
+  touch-action: manipulation;
+}
