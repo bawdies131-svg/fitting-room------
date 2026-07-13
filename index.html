@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>試着室番号管理</title>
 
-  <link rel="stylesheet" href="style.css?v=9003">
+  <link rel="stylesheet" href="style.css?v=9004">
 </head>
 
 <body>
@@ -43,19 +43,17 @@
 
     <h2>性別を選択してください</h2>
 
-    <button class="gender-button"
-            onclick="selectGender('men')">
+    <button class="gender-button" onclick="selectGender('men')">
       メンズ
     </button>
 
-    <button class="gender-button"
-            onclick="selectGender('women')">
+    <button class="gender-button" onclick="selectGender('women')">
       レディース
     </button>
 
   </div>
 
-  <!-- メイン -->
+  <!-- メイン画面 -->
   <div id="main" style="display:none;">
 
     <h2 id="title"></h2>
@@ -67,23 +65,20 @@
       <button data-num="2" onclick="addNumber(2)">2</button>
       <button data-num="3" onclick="addNumber(3)">3</button>
       <button data-num="4" onclick="addNumber(4)">4</button>
+
       <button data-num="5" onclick="addNumber(5)">5</button>
       <button data-num="6" onclick="addNumber(6)">6</button>
       <button data-num="7" onclick="addNumber(7)">7</button>
       <button data-num="8" onclick="addNumber(8)">8</button>
     </div>
 
-    <div class="info">
-      現在の待機数：
-      <span id="waitingCount">0</span>名
-    </div>
-
-    <h3>待機中</h3>
+    <h3>
+      待機中　<span id="waitingCount">0</span>名
+    </h3>
 
     <div id="waitingList"></div>
 
-    <button class="back-link"
-            onclick="location.reload()">
+    <button class="back-link" onclick="location.reload()">
       🏠 トップページへ
     </button>
 
@@ -107,10 +102,17 @@
 
     firebase.initializeApp(firebaseConfig);
 
-    firebase.auth().signInAnonymously();
+    firebase.auth()
+      .signInAnonymously()
+      .then(() => {
+        console.log("匿名認証成功");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   </script>
 
-  <script src="script.js?v=9003"></script>
+  <script src="script.js?v=9004"></script>
 
 </body>
 </html>
