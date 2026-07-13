@@ -5,26 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>試着室番号管理</title>
 
-  <link rel="stylesheet" href="style.css?v=9002">
+  <link rel="stylesheet" href="style.css?v=9003">
 </head>
 
 <body>
-
-  <!-- 戻る（店番変更） -->
-  <button id="backStoreButton"
-          class="back-link"
-          onclick="backToStore()"
-          style="display:none;">
-    ← 店番変更
-  </button>
-
-  <!-- 戻る（性別変更） -->
-  <button id="backGenderButton"
-          class="back-link"
-          onclick="backToGender()"
-          style="display:none;">
-    ← 性別変更
-  </button>
 
   <!-- 店番入力 -->
   <div id="storeInput">
@@ -49,10 +33,7 @@
       <button onclick="clearKey()">C</button>
       <button onclick="pressKey(0)">0</button>
 
-      <button id="enterStoreButton"
-              onclick="confirmStore()">
-        決定
-      </button>
+      <button onclick="confirmStore()">決定</button>
     </div>
 
   </div>
@@ -74,15 +55,10 @@
 
   </div>
 
-  <!-- メイン画面 -->
+  <!-- メイン -->
   <div id="main" style="display:none;">
 
     <h2 id="title"></h2>
-
-    <div class="info">
-      現在の待機数：
-      <span id="waitingCount">0</span>名
-    </div>
 
     <h3>番号札</h3>
 
@@ -97,13 +73,18 @@
       <button data-num="8" onclick="addNumber(8)">8</button>
     </div>
 
+    <div class="info">
+      現在の待機数：
+      <span id="waitingCount">0</span>名
+    </div>
+
     <h3>待機中</h3>
 
     <div id="waitingList"></div>
 
-    <button id="resetButton"
-            class="reset">
-      全リセット
+    <button class="back-link"
+            onclick="location.reload()">
+      🏠 トップページへ
     </button>
 
   </div>
@@ -114,7 +95,6 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
   <script>
-
     const firebaseConfig = {
       apiKey: "AIzaSyAuLRxpzQ1tsjszhjgHiDZ8gRCbz9sy0BU",
       authDomain: "fittingroom2-51523.firebaseapp.com",
@@ -127,18 +107,10 @@
 
     firebase.initializeApp(firebaseConfig);
 
-    firebase.auth()
-      .signInAnonymously()
-      .then(() => {
-        console.log("匿名認証成功");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
+    firebase.auth().signInAnonymously();
   </script>
 
-  <script src="script.js?v=9002"></script>
+  <script src="script.js?v=9003"></script>
 
 </body>
 </html>
