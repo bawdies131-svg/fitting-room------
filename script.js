@@ -183,3 +183,18 @@ function changeSetting(){
   location.reload();
 
 }
+// 起動時
+window.onload = function () {
+
+  if(savedStore && savedGender){
+
+    document.getElementById("savedStore").textContent = savedStore;
+    document.getElementById("savedGender").textContent =
+      savedGender === "men" ? "メンズ" : "レディース";
+
+    document.getElementById("savedSetting").style.display = "block";
+    document.getElementById("storeInput").style.display = "none";
+
+  }
+
+};
