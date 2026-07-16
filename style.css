@@ -146,3 +146,7 @@ button:disabled {
 button {
   touch-action: manipulation;
 }
+.pressed{
+  transform: scale(0.95);
+  filter: brightness(0.85);
+}
