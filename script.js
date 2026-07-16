@@ -107,11 +107,6 @@ function renderWaitingList(list) {
 // 番号札追加
 function addNumber(num){
 
-  // スマホなら振動
-  if(navigator.vibrate){
-    navigator.vibrate(40);
-  }
-
   const btn = document.querySelector(`button[data-num="${num}"]`);
 
   btn.disabled = true;
