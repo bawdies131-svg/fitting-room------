@@ -94,7 +94,7 @@ function renderWaitingList(list) {
 setTimeout(() => {
   btn.classList.remove("pressed");
 }, 100);
-    button.textContent = "回収";
+    button.textContent = "案内済";
 
     button.onclick = ()=>removeNumber(index);
 
