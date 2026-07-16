@@ -10,6 +10,32 @@
 
 <body>
 
+  <!-- 保存済み設定 -->
+<div id="savedSetting" style="display:none;">
+
+  <h2>前回の設定</h2>
+
+  <p style="font-size:24px;">
+    店番：<span id="savedStore"></span>
+  </p>
+
+  <p style="font-size:24px;">
+    性別：<span id="savedGender"></span>
+  </p>
+
+  <button class="gender-button"
+          onclick="startSavedSetting()">
+    この設定で開始
+  </button>
+
+  <br><br>
+
+  <button class="back-link"
+          onclick="changeSetting()">
+    店番・性別を変更する
+  </button>
+
+</div>
   <!-- 店番入力 -->
   <div id="storeInput">
 
