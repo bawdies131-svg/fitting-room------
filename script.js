@@ -2,6 +2,9 @@ let storeNumber = "";
 let gender = "";
 let dbRef = null;
 
+const savedStore = localStorage.getItem("storeNumber");
+const savedGender = localStorage.getItem("gender");
+
 // 店番入力
 function pressKey(num) {
   if (storeNumber.length < 3) {
@@ -29,6 +32,8 @@ function confirmStore() {
 function selectGender(g) {
 
   gender = g;
+  localStorage.setItem("storeNumber", storeNumber);
+localStorage.setItem("gender", gender);
 
   document.getElementById("genderSelect").style.display = "none";
   document.getElementById("main").style.display = "block";
@@ -143,4 +148,38 @@ function removeNumber(index){
 
     dbRef.set(list);
   });
+}
+function startSavedSetting(){
+
+  storeNumber = savedStore;
+  gender = savedGender;
+
+  document.getElementById("savedSetting").style.display = "none";
+  document.getElementById("main").style.display = "block";
+
+  document.getElementById("title").textContent =
+    (gender === "men" ? "メンズ" : "レディース") +
+    " ／ 店番 " + storeNumber;
+
+  dbRef = firebase.database().ref(`stores/${storeNumber}/${gender}/waiting`);
+
+  dbRef.on("value", snapshot => {
+
+    const list = snapshot.val() || [];
+
+    renderWaitingList(list);
+    updateButtons(list);
+
+  });
+
+}
+
+// 店番・性別変更
+function changeSetting(){
+
+  localStorage.removeItem("storeNumber");
+  localStorage.removeItem("gender");
+
+  location.reload();
+
 }
