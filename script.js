@@ -89,6 +89,11 @@ function renderWaitingList(list) {
     text.textContent = `${order[index]}　番号札${num}`;
 
     const button = document.createElement("button");
+    btn.classList.add("pressed");
+
+setTimeout(() => {
+  btn.classList.remove("pressed");
+}, 100);
     button.textContent = "回収";
 
     button.onclick = ()=>removeNumber(index);
